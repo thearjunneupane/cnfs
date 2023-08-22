@@ -1,0 +1,64 @@
+{{define "_posts"}} {{$loggedInUserID := print .ID}}
+{{$loggedInUserInt := .User.ID}}
+<div class="md:px-6 p-0 w-full sm:max-w-full flex mb-4 h-full">
+  <div class="w-full sm:w-4/4 h-full sm:mx-auto">
+    {{if eq $loggedInUserID .LoggedInUserId }} {{if .User.Name}}
+    <div class="m-4">{{template "createpost"}}</div>
+    {{end}} {{end}} 
+    <div class="my-8" >
+      <h1 
+        class="text-4xl font-bold m-auto "
+        style="border-bottom:1px solid #ffffff33; width: fit-content; color: #829598;"
+        >Confessions</h1>
+    </div>
+    {{if .Posts}} {{range .Posts}}
+    <div
+      class="m-4 rounded-3xl p-4 flex flex-col justify-between leading-normal shadow-2xl"
+      style="border: 1px solid #ffffff33;"
+    >
+      <div class="details flex items-center">
+        <img
+          class="w-10 h-10 rounded-full mr-4"
+          src="/public/img/avatar.svg"
+          alt="Avatar"
+        />
+        <!-- {{$loggedInUserID := print $loggedInUserID}} -->
+        <span class="font-bold capitalize" style="color: #D93A00;">{{.Author}}</span>
+        {{if eq $loggedInUserInt .CreatedBy }}
+        <form action="" method="post" class="ml-auto cursor-pointer">
+          <input type="hidden" name="postId" value="{{.ID}}" />
+          <a class="">
+            <button
+              type="submit"
+              name="delete"
+              class="w-6 h-6 hover:bg-gray-200 rounded-full outline-none p-1"
+            >
+              <img
+                class="w-full h-full"
+                src="/public/img/delete.svg"
+                alt="delete icon"
+              />
+            </button>
+          </a>
+        </form>
+        {{end}}
+      </div>
+      <div 
+        class="flex flex-col mt-2 ml-2"
+        style="color: #829598;"
+        >
+        <span class="whitespace-pre-line break-words">{{.Content}}</span>
+      </div>
+    </div>
+
+    {{end}} {{else}}
+    <div
+      class="m-4 p-4 rounded-3xl flex flex-col justify-between leading-normal text-center"
+      style="border: 1px solid #ffffff33; color: #829598;"
+    >
+      No Confessions to show till now...!
+    </div>
+    {{end}}
+  </div>
+</div>
+{{end}}

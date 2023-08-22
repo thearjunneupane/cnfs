@@ -1,0 +1,87 @@
+body {
+  min-width: 420px;
+  background-color: #0B1416;
+}
+
+.profile-img {
+  bottom: -5.5rem;
+  padding-left: 0;
+}
+
+@media (min-width: 768px) {
+  .profile-img {
+    /* padding: 4rem; */
+  }
+}
+@media (max-width: 550px) {
+}
+
+/* .uname {
+  position: absolute;
+  left: 20px;
+} */
+
+.users-name {
+  text-transform: capitalize;
+}
+
+.users {
+  width: 500px;
+}
+
+@media (max-width: 768px) {
+  .profile-stats {
+    flex-direction: column;
+    align-items: center;
+    transform: translateY(-25px);
+  }
+  .profile-stats > div {
+    padding-top: 60px;
+  }
+}
+
+button.follow-btn {
+  width: 7rem;
+}
+
+button.follow-btn:hover a {
+  display: none;
+}
+button.follow-btn a.unfollow {
+  display: none;
+}
+button.follow-btn:hover a.unfollow {
+  display: block;
+}
+
+textarea {
+  min-height: 50px;
+}
+
+.sidebar img {
+  top: -1rem;
+  /* max-height: 100vh; */
+}
+
+.sidebar {
+  width: 260px;
+}
+
+main {
+  width: 100%;
+  margin: auto;
+}
+
+@media (min-width: 768px) {
+  main {
+    width: 800px;
+    margin: auto;
+  }
+}
+/* button.follow-btn:hover::before span {
+  content: "Unfollow";
+} */
+
+/* button.follow-btn ::before {
+  content: "Unfollow";
+} */

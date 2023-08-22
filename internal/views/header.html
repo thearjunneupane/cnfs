@@ -1,0 +1,129 @@
+{{ define "header" }}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confess Up</title>
+    <link rel="icon" href="/images/favicon.png" type="image/png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Satisfy"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/tailwindcss@^2.0.1/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/public/css/style.css" />
+  </head>
+  <body>
+    <nav 
+      class="fixed w-full z-20 top-0 left-0 px-4"
+      style="background-color: #0B1416; opacity: .98; border-bottom: 1px solid #ffffff1a;"
+      >
+      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-4">
+        <a href="/" class="flex items-center flex-col">
+            <p
+              class="self-center font-bold whitespace-nowrap"
+              style="color: #D93A00; font-size: 35px; text-shadow: 2px 2px 3px rgba(255,255,255,0.4);"
+              >
+              cnfs.
+          </p>
+        </a>
+
+        <div class="flex md:order-2">
+      <a href="/logout">
+        <button 
+          type="button" 
+          class="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-3xl text-sm px-4 py-2 text-center mr-3 md:mr-0"
+          style="background-color: #D93A00;"    
+        >Logout</button></a>
+      <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-sticky" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+    </button>
+  </div>
+  <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+    <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0">
+      <li>
+        <a 
+          href="/" 
+          class="block py-2 pl-3 pr-4 text-white rounded md:p-0 text-2xl font-bold" 
+          aria-current="page"
+        >
+          Home</a>
+      </li>
+      {{if not .}}
+      <li>
+      <a
+        href="/login"
+        class="block py-2 pl-3 pr-4 text-white rounded md:p-0 text-2xl font-bold"
+      >
+        Login
+      </a>
+      </li>
+      {{else}}
+      <li>
+        <a 
+          href="{{printf "/%s/%s" "user" . }}" 
+          class="block py-2 pl-3 pr-4 text-white rounded md:p-0 text-2xl font-bold"
+      >
+        Profile</a>
+      </li>
+      <li>
+        <a 
+          href="/users" 
+          class="block py-2 pl-3 pr-4 text-white rounded md:p-0 text-2xl font-bold"
+      >
+        Users</a>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+  </div>
+</nav>
+
+          
+          <!-- <a
+            href="/login"
+            class="block inline-block mt-0 text-indigo-200 hover:text-white mr-4"
+          >
+            Login
+          </a>
+          <a
+          href="/user/1"
+          class="block inline-block mt-0 text-indigo-200 hover:text-white mr-4"
+        >
+          Profile
+        </a> -->
+        <!-- <div>
+          <a
+            href="#"
+            class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-indigo-500 hover:bg-white mt-4 lg:mt-0"
+            >Download</a
+          >
+        </div> -->
+<!-- <main class="sm:mx-32 my-2 h-full "> -->
+<main class="mt-20 h-auto">
+    {{ end }}
+  </body>
+</html>

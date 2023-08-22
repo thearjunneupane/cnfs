@@ -1,0 +1,81 @@
+{{template "header" .LoggedInUserId }}
+<section class="relative py-16 bg-blueGray-200">
+<div class="container mx-auto px-4 pt-48">
+<div class="relative flex flex-col min-w-0 break-words w-full mb-6 rounded-lg -mt-64">
+  <div class="px-6">
+    <div class="flex flex-wrap justify-center">
+      <div class="w-full lg:w-4/12 px-4 lg:order-1">
+        <div 
+          class="flex justify-center py-4 lg:pt-4 pt-8"
+          style="color: #829598;"
+          >
+          <div 
+            class="mr-4 p-3 text-center"
+            style="border-right: 1px solid #ffffff33;"
+            >
+            <span class="text-xl font-bold block uppercase tracking-wide">{{.PostCount}}</span><span class="text-sm">Confessions</span>
+          </div>
+          <div 
+            class="mr-4 p-3 text-center"
+            style="border-right: 1px solid #ffffff33;"
+            >
+            <span class="text-xl font-bold block uppercase tracking-wide">{{ .Followers }}</span><span class="text-sm">Followers</span>
+          </div>
+          <div class="lg:mr-4 p-3 text-center">
+            <span class="text-xl font-bold block uppercase tracking-wide">{{ .Following }}</span><span class="text-sm">Following</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{if .Avatar}}
+    <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center m-auto">
+      <div class="relative">
+        <img class="w-32 h-32 rounded-full" src="{{.Avatar}}" alt="Avatar" />
+      </div>
+    </div>
+    {{ end }}
+    <div 
+      class="text-center mt-2"
+      style="color: #829598;"
+      >
+      <h3 class="text-3xl font-semibold leading-normal text-blueGray-700">
+        {{ .Username }}
+      </h3>
+    </div>
+        {{if (and (not .MyProfile) (not .IsFollower)) }}
+        <button 
+          class="uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 my-2 mx-auto rounded outline-none focus:outline-none ease-linear transition-all duration-150 flex justify-center" 
+          type="button"
+          style="background-color: #D93A00;"
+          >
+          {{ $path := printf "%s/%s/%s" "/user" .ID "follow" }}
+          <a href="{{$path}}">Follow</a>
+        </button>
+        {{end}} {{if (and (not .MyProfile) (.IsFollower)) }}
+        <button 
+          class="follow-btn uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 my-2 mx-auto rounded outline-none focus:outline-none ease-linear transition-all duration-150 flex justify-center" 
+          type="button"
+          style="background-color: #D93A00;"
+          >
+          {{ $path := printf "%s/%s/%s" "/user" .ID "unfollow" }}
+          <a href="{{$path}}" class="unfollow">Unfollow</a>
+          <a href="{{$path}}">Following</a>
+        </button>
+        {{end}}
+    <div 
+      class="mt-4 py-4 text-left"
+      style="border-top: 1px solid #ffffff33;"
+      >
+      <div class="flex flex-wrap justify-center">
+        <div class="w-full">
+          <div class="">
+            {{template "_posts" . }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+{{template "footer" }}

@@ -1,0 +1,20 @@
+{{ if .LoggedInUserId}} {{template "header" .LoggedInUserId }} {{template "_posts" . }} {{else}}
+{{template "header" }}
+<section class="relative py-16">
+    <div class="container mx-auto px-4 pt-48">
+      <div 
+        class="text-center"
+        style="color: #829598;"
+      >
+        <h1 class="text-4xl font-bold text-blueGray-700 mb-4">Welcome to <span style="color: #D93A00; font-size: 50px; font-weight: bold">Cnfs.</span></h1>
+        <p class="text-lg text-blueGray-500 mb-8">Join us to share your raw thoughts and confess anonymously...!</p>
+        <div class="flex justify-center">
+          <a href="/login" class="btn-primary mr-4 hover:underline text-indigo-800 text-2xl">Login</a>
+          <a href="/signup" class="btn-secondary mr-4 hover:underline text-indigo-800 text-2xl">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </section>
+{{end}}
+
+{{template "footer"}}

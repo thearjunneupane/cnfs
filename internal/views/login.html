@@ -1,0 +1,95 @@
+{{template "header" }}
+<div 
+  class="w-full max-w-xl m-auto mt-48 mb-24"
+  style="border: 1px solid #ffffff33;"
+  >
+  <form
+    method="post"
+    class="login shadow-md rounded px-8 pt-6 pb-8 mb-4"
+    style="color: #829598;"
+  >
+  <div 
+    class="mb-8 text-4xl font-bold"
+    style="width: fit-content; border-bottom: 2px solid #ffffff33; color: #D93A00;"  
+  >
+    <h1>Log In</h1>
+  </div>
+    {{if .mismatch}}
+    <div class="mb-4">
+      <p class="text-red-500 text-base">{{.mismatch}}</p>
+    </div>
+    {{end}}
+    <div class="mb-4">
+      <label for="email" class="block text-xl font-bold mb-2"
+        >Email</label
+      >
+      {{if .email}}
+      <input
+        type="email"
+        name="email"
+        id="email"
+        class="shadow appearance-none w-full py-2 px-3 text-white leading-tight focus:outline-none"
+        style="border: 1px solid #ffffff33; background: none;"
+      />
+      <p class="text-red-500 text-xs italic">Please choose an email.</p>
+      {{else}}
+      <input
+        type="email"
+        name="email"
+        id="email"
+        class="shadow appearance-none rounded w-full py-2 px-3 leading-tight focus:outline-none"
+        style="border: 1px solid #ffffff33; background: none;"
+      />
+      {{end}}
+    </div>
+
+    <div class="mb-4">
+      <label for="password" class="block text-xl font-bold mb-2"
+        >Password</label
+      >
+      {{if .password}}
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="**************"
+        class="shadow appearance-none rounded w-full py-2 px-3 leading-tight focus:outline-none"
+        style="border: 1px solid #ffffff33; background: none;"
+      />
+      <p class="text-red-500 text-xs italic">Please choose a password.</p>
+      {{else}}
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="**************"
+        class="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none" 
+        style="border: 1px solid #ffffff33; background: none;"
+      />
+      {{end}}
+    </div>
+
+    <div class="flex items-center flex-col justify-between mt-8">
+      <button
+        value="submit"
+        class="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full hover:underline"
+        style="background-color: #D93A00;"
+        type="submit"
+      >
+        Log In
+      </button>
+
+      <hr style="margin: 30px 0; border: 1px solid #ffffff33; width: 100%;">
+      <p class="inline-block">Don't have an account?</p> 
+      <a
+        class="inline-block align-baseline font-bold text-xl hover:underline"
+        style="color: #D93A00;"
+        href="/signup"
+      >
+      Register
+      </a>
+    </div>
+  </form>
+</div>
+
+{{template "footer" }}
