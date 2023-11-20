@@ -5,13 +5,13 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gorilla/securecookie"
 	"github.com/thearjunneupane/cnfs/common"
-	"github.com/thearjunneupane/cnfs/internal/config"
 	"github.com/thearjunneupane/cnfs/internal/model"
 )
 
@@ -37,8 +37,8 @@ type ContextKey string
 
 type Error map[string][]string
 
-var jwtKey = []byte(config.Env.JwtKey)
-var hashKey = []byte(config.Env.HashKey)
+var jwtKey = []byte(os.Getenv("JWT_KEY"))
+var hashKey = []byte(os.Getenv("HASH_KEY"))
 var secureCookie = securecookie.New(hashKey, nil)
 
 func Login(w http.ResponseWriter, r *http.Request) {
