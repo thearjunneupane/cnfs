@@ -15,7 +15,7 @@ type Post struct {
 }
 
 func init() {
-	// Db.CreateTable(&Post{})
+	Db.CreateTable(&Post{})
 }
 
 // CreatePost create post
