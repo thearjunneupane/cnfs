@@ -3,8 +3,9 @@ package config
 import (
 	"log"
 
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 // DB returns the database object
@@ -22,9 +23,10 @@ func DB() *gorm.DB {
 
 	PSQL_connStr := "postgresql://arjnep000%40gmail.com:RA2wF6iqJNxa@ep-rapid-sky-61800086.us-east-2.aws.neon.tech/cnfs?sslmode=verify-full"
 
-	db, err := gorm.Open("postgres", PSQL_connStr)
-
-	db = db.BlockGlobalUpdate(true)
+	db, err := gorm.Open(postgres.Open(PSQL_connStr), &gorm.Config{
+		AllowGlobalUpdate: false,
+		Logger:            logger.Default.LogMode(logger.Silent),
+	})
 
 	if err != nil {
 		log.Fatal("Database error: ", err)

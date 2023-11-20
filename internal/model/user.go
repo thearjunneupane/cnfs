@@ -3,9 +3,9 @@ package model
 import (
 	"log"
 
-	"github.com/jinzhu/gorm"
 	"github.com/thearjunneupane/cnfs/common"
 	"github.com/thearjunneupane/cnfs/internal/config"
+	"gorm.io/gorm"
 )
 
 // Db database
@@ -118,14 +118,14 @@ func IsFollower(userID uint, friendID uint) (bool, error) {
 	}
 	return true, nil
 }
-func CountFollowings(userID uint) (int, error) {
+func CountFollowings(userID uint) (int64, error) {
 	user := User{}
 	user.ID = userID
 	count := Db.Model(&user).Association("Friends").Count()
 	return count, nil
 }
-func CountFollowers(userID uint) (int, error) {
-	count := 0
+func CountFollowers(userID uint) (int64, error) {
+	count := int64(0)
 	Db.Table("friendships").Select("friend_id").Where("friend_id = ?", userID).Count(&count)
 	return count, nil
 }

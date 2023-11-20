@@ -3,7 +3,7 @@ package model
 import (
 	"log"
 
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 type Post struct {
@@ -15,7 +15,7 @@ type Post struct {
 }
 
 func init() {
-	Db.CreateTable(&Post{})
+	Db.Migrator().CreateTable(&Post{})
 }
 
 // CreatePost create post
@@ -74,8 +74,8 @@ func FetchUserPosts(posts *[]Post, userID uint) error {
 
 	return nil
 }
-func CountUserPosts(userID uint) (int, error) {
-	var count int
+func CountUserPosts(userID uint) (int64, error) {
+	var count int64
 	allPosts := Db.Model(&Post{}).Where("created_by = ?", userID).Count(&count)
 	if allPosts.Error != nil {
 		log.Println(allPosts.Error)

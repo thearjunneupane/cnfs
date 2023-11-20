@@ -14,8 +14,8 @@ import (
 type Profile struct {
 	Username         string
 	ID               string
-	Following        int
-	Followers        int
+	Following        int64
+	Followers        int64
 	IsFollower       bool
 	Avatar           string
 	MyProfile        bool
@@ -23,7 +23,7 @@ type Profile struct {
 	User             ClaimsCred
 	LoggedInUserId   string
 	LoggedInUsername string
-	PostCount        int
+	PostCount        int64
 }
 
 func GetUser(w http.ResponseWriter, r *http.Request) {
